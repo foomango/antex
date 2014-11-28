@@ -1,0 +1,77 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0059)http://dreamland.tky.hut.fi/IrssiBot/development/index.html -->
+<HTML><HEAD><TITLE>IrssiBot the IRC bot</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY vLink=#ffffff aLink=#ffffff link=#ffffff bgColor=#000000>
+<CENTER><FONT color=#ffffff size=3>
+<TABLE width="80%" border=0>
+  <TBODY>
+  <TR>
+    <TD height=20></TD></TR>
+  <TR>
+    <TD align=middle><FONT color=#ffffff size=3>
+      <H1>IrssiBot</H1>- development - <BR><BR></FONT></TD></TR>
+  <TR>
+    <TD align=left bgColor=#333333><FONT color=#ffffff size=3><B>Writing 
+      modules</B> </FONT></TD></TR>
+  <TR>
+    <TD align=left><FONT color=#ffffff size=3>The bot is written from the 
+      beginning with modularity in mind. Therefore it is possible to add 
+      features to bot via modules, which are actual compiled Java classes. Since 
+      there is this nice feature in the Java language that allows dynamic 
+      loading of classes, the bot doesn't need to be restarted when 
+      adding/removing modules. Also, the modules are each ran in their own 
+      threads, and therefore if a module crashes, the rest of the bot does not, 
+      but simply unloads the faulty module and logs the event.<BR><BR>So, to 
+      write a module for IrssiBot you need of course to have at least some 
+      knowledge of Java programming and be familiar with the IRC protocol and 
+      how event-based programs work. Here are the technical requirements for a 
+      Java class to meet to be a IrssiBot module: 
+      <UL>
+        <LI>It must reside in package irssibot.modules 
+        <LI>It must be a subclass of <A 
+        href="http://dreamland.tky.hut.fi/IrssiBot/documentation/api/irssibot/modules/AbstractModule.html">AbstractModule</A> 
+
+        <LI>The .class file must reside in directory 
+        <B>modules/irssibot/modules</B> for <A 
+        href="http://dreamland.tky.hut.fi/IrssiBot/documentation/api/irssibot/core/ModuleLoader.html">ModuleLoader</A> 
+        to find it. </LI></UL>Satisfying these conditions, the module can be 
+      loaded (either from config file or by 
+      <I>!core-&gt;loadModule(moduleName)</I>). It starts to receive IRC events 
+      immediately. Here are some recommended conventions to follow when writing 
+      modules: 
+      <UL>
+        <LI>All commands should have both public and /msg form. Public form must 
+        be preceded by '!' 
+        <LI>The command format should be: 
+        <UL>
+          <LI><B>!command [argument1] [argument2] ..</B> for public commands 
+          (said on channel) 
+          <LI><B>/msg &lt;botnick&gt; command &lt;channel&gt; [argument1] 
+          [argument2] ..</B> for private commads (messaged to bot) </LI></UL>
+        <LI>All commands containing passwords etc. must NOT have a public form 
+        <LI>If the module needs to keep state across bot restarts, they must do 
+        it by returning a valid <A 
+        href="http://dreamland.tky.hut.fi/doc/java/jdk1.3/docs/api/java/util/Properties.html">Properties</A> 
+        object in their <A 
+        href="http://dreamland.tky.hut.fi/IrssiBot/documentation/api/irssibot/modules/AbstractModule.html#getState()">getState()</A> 
+        method. 
+        <LI>Printouts (PRIVMSGs to either channel or nick) should be cut to 
+        minimun; for example, don't print help texts, rather than display an URL 
+        containing them. This is of course to avoid excess traffic that might 
+        slow down the bot due to slow connection to the IRC server. 
+        <LI>Modules should not write to stdout/stderr. For logging purposes, use 
+        the methods in <A 
+        href="http://dreamland.tky.hut.fi/IrssiBot/documentation/api/irssibot/util/log/Log.html">irssibot.util.log.Log</A>. 
+        </LI></UL>Looking at <A 
+      href="http://dreamland.tky.hut.fi/IrssiBot/documentation/api/index.html">IrssiBot 
+      API</A> and the <A 
+      href="http://dreamland.tky.hut.fi/IrssiBot/documentation/modules.html">default 
+      modules</A> might be the best way to start with writing modules. If you 
+      have some questions, please ask. And when you complete a module and feel 
+      it doesn't conflict with things mentioned above, zip the sources up and 
+      send them to me. I will keep some kind of archive of modules on this site. 
+      Also giving an URL to a javadoc document of the module would be 
+      nice.<BR><BR>Happy 
+coding!<BR><BR></FONT></TD></TR></TBODY></TABLE></FONT></CENTER></BODY></HTML>

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!--
+Here is how you can access your environment variables.
+Note: Environment variables are specific to your system.
+-->
+<project basedir="." default="echoVariables" name="Echo Environment Variables">
+ 
+<target name="echoVariables">
+   <property environment="my_env" />
+   <echo>
+      Here are sample environment variables in my operating system:
+      ${my_env.classpath}
+      ${my_env.CommonProgramFiles}
+      ${my_env.CommonProgramFiles(x86)}
+      ${my_env.CommonProgramW6432}
+      ${my_env.java_home}
+      ${my_env.PATH}
+      ${my_env.USHER_NETWORK_HOME}
+   </echo>
+</target>
+</project>

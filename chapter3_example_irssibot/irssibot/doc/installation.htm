@@ -1,0 +1,88 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.0 Transitional//EN">
+<!-- saved from url=(0051)http://dreamland.tky.hut.fi/IrssiBot/documentation/ -->
+<HTML><HEAD><TITLE>IrssiBot the IRC bot</TITLE>
+<META http-equiv=Content-Type content="text/html; charset=windows-1252">
+<META content="MSHTML 6.00.2600.0" name=GENERATOR></HEAD>
+<BODY vLink=#ffffff aLink=#ffffff link=#ffffff bgColor=#000000>
+<CENTER><FONT color=#ffffff size=3>
+<TABLE width="80%" border=0>
+  <TBODY>
+  <TR>
+    <TD height=20></TD></TR>
+  <TR>
+    <TD align=middle><FONT color=#ffffff size=3>
+      <H1>IrssiBot</H1>- documentation - <BR><BR></FONT></TD></TR>
+  <TR>
+    <TD align=left bgColor=#333333><FONT color=#ffffff 
+      size=3><B>Installation</B> </FONT></TD></TR>
+  <TR>
+    <TD align=left><FONT color=#ffffff size=3>The following assumes a *nix OS 
+      <B>bash</B> shell. If you are running IrssiBot under Windows - well, you 
+      shouldn't be. If you are, however, then look at the start script and write 
+      another that windows understands. 
+      <OL>
+        <LI>Create a directory for irssibot and untar (tar xfzv package.tar.gz) 
+        the package there. 
+        <LI>Edit <B>config/example-config.xml</B> and the user file you specify. 
+        </LI></OL>Now IrssiBot is ready to run. Use the 
+      following:<BR><BR><CODE>./bot.sh start 
+      config/your-config-file-name.xml</CODE> - runs the bot<BR><CODE>./bot.sh 
+      stop</CODE> - kills the bot rudely<BR><BR><BR></FONT></TD></TR>
+  <TR>
+    <TD align=left bgColor=#333333><FONT color=#ffffff size=3><B>Dynamic 
+      users</B> </FONT></TD></TR>
+  <TR>
+    <TD align=left><FONT color=#ffffff size=3>All users that have a hostmask 
+      containing * characters, are considered dynamic users and must 
+      <B>login</B> to the bot after a certain period of time to maintain their 
+      user status. In the current version of the bot, this period is one hour. 
+      The login procedure is <B><CODE>/msg botnick login 
+      &lt;password&gt;</CODE></B> after which the bot will prompt you about the 
+      successful login. If you wish to remove your login status before the 60 
+      minutes period is up, you can do <B><CODE>/msg botnick logout</CODE></B> 
+      in which case your previous login status is erased.<BR><BR>There has been 
+      some confusion about the password/login stuff.. the password is only for 
+      dynamic users (see definition above) and you may NOT set one's password by 
+      modifying the user file; the passwords in the user file are scrambled and 
+      will be broken by descramble on next load. Use UserTools -module's !edit 
+      password -command to change an user's password. <BR><BR></FONT></TD></TR>
+  <TR>
+    <TD align=left bgColor=#333333><FONT color=#ffffff size=3><B>Commands</B> 
+      </FONT></TD></TR>
+  <TR>
+    <TD align=left><FONT color=#ffffff size=3>All commands to bot are either 
+      spoken on a channel (a preceding '!' is required) or /msg'd to the bot. 
+      The built-in commands are member functions of a concrete Java class, 
+      namely Core.class, and they are sort of interpreted on-the-fly. If this 
+      seems confusing, don't panic, the bot works just fine whether or not you 
+      know anything about core calls. To call these functions, use one of the 
+      following 
+      syntaxes:<BR><BR><CODE><I>!core-&gt;methodName(argument1,argument2,..)</I></CODE><BR><BR>or<BR><BR><CODE><I>/msg 
+      botnick core-&gt;methodName(argument1,argument2,..)</I></CODE><BR><BR>All 
+      other commands besides the Core calls are the ones defined by loaded 
+      modules. Generally the command format for all IrssiBot commands 
+      is:<BR><BR><CODE><I>!command argument1 argument2 [,argument3, 
+      ..]</I></CODE><BR><BR>and the /msg counterpart:<BR><BR><CODE><I>/msg 
+      botnick command #channel argument1 argument2 [,argument3, 
+      ..]</I></CODE><BR><BR>Here is a list of the <A 
+      href="http://dreamland.tky.hut.fi/IrssiBot/documentation/modules.html">modules</A> 
+      and the commands they contain. <BR><BR></FONT></TD></TR>
+  <TR>
+    <TD align=left bgColor=#333333><FONT color=#ffffff size=3><B>List of core 
+      calls</B> </FONT></TD></TR>
+  <TR>
+    <TD align=left><FONT color=#ffffff size=3>Note: all core calls require a 
+      <B>global 
+      admin</B>.<BR><BR><CODE><B>loadModule(moduleClassName)</B></CODE> - loads 
+      a module<BR><CODE><B>listLoadedModules()</B></CODE> - lists loaded 
+      modules<BR><CODE><B>unloadModule(moduleClassName)</CODE> - removes module 
+      from 
+      memory<BR><CODE><B>addChannelConnect(fromNetworkName#fromChannel,toNetworkName#toChannel)</B></CODE> 
+      - connects two channels<BR><CODE><B>listChannelConnects()</B></CODE> - 
+      lists channel 
+      connections<BR><CODE><B>removeChannelConnects(fromNetworkName)</B></CODE> 
+      - removes a channel connection<BR><CODE><B>save()</B></CODE> - forces all 
+      server instances to save their config 
+      files<BR><CODE><B>quit(message)</B></CODE> - quits the 
+      bot<BR><CODE><B>info()</B></CODE> - display bot 
+  info<BR></FONT></B></TD></TR></TBODY></TABLE></FONT></CENTER></BODY></HTML>
