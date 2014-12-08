@@ -1,0 +1,12 @@
+<?xml version="1.0"?>
+
+<!-- build.xml - Test for Ant's run -->
+<project name="Test for Ant's run" default="test-run" basedir=".">
+  <!-- Argument for print node.js version -->
+  <property name="version" value="--version"/>
+  <target name="test-run">
+    <exec executable="node">
+      <arg value="${version}"/>
+    </exec>
+  </target>
+</project>
