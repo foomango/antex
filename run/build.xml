@@ -9,4 +9,9 @@
       <arg value="${version}"/>
     </exec>
   </target>
+
+  <target name="exec-pwd">
+    <exec executable="pwd">
+    </exec>
+  </target>
 </project>

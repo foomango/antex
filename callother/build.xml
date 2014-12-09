@@ -1,0 +1,9 @@
+<?xml version="1.0" ?>
+
+<!-- build.xml - Call another ant script-->
+<project name="Call another ant script" default="ant-run" basedir=".">
+  <target name="ant-run">
+    <ant antfile="../run/build.xml" target="exec-pwd">
+    </ant>
+  </target>
+</project>
