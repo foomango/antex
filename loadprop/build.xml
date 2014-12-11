@@ -1,0 +1,11 @@
+<project name="Load properties from file" default="test" basedir=".">
+  <property name="manifest.file" value="manifest.properties" />
+  <!-- property name="build.dir" value="default" /-->
+
+  <target name="test">
+    <property file="${manifest.file}" />
+    <echo>
+      ${build.dir}
+    </echo>
+  </target>
+</project>
